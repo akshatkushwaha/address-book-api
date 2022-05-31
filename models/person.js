@@ -9,19 +9,20 @@ const person = new mongoose.Schema({
   },
   lastName: {
     type: String,
-    required: false,
     trim: true,
     maxlength: [20, "name cannot be more than 20 character"],
   },
   email: {
     type: String,
-    required: false,
     trim: true,
     maxlength: [30, "email cannot be more than 30 character"],
   },
   tel: {
     type: String,
     maxlength: [14, "Invalid contact number"],
+  },
+  address: {
+    type: String,
   },
 });
 

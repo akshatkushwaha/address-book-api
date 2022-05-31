@@ -3,6 +3,7 @@ const connectDB = require("./db/connect");
 const errorHandlingMiddleware = require("./middleware/error-handling");
 const app = express();
 const book = require("./routers/book");
+const auth = require("./routers/auth");
 require("dotenv").config();
 
 //middleware
@@ -12,6 +13,7 @@ app.use(express.json());
 
 //route
 app.use("/api/v1/", book);
+app.use("/api/v1/", auth);
 
 app.get("*", (req, res) => {
   res.status(404).send("Route does not exits");
@@ -30,9 +32,3 @@ const start = async () => {
 };
 
 start();
-
-// app.get('/api/v1/tasks')    --get all the task
-// app.post('/api/v1/tasks')    --create new task
-// app.get('/api/v1/tasks/:id')    --get single task
-// app.patch('/api/v1/tasks/:id')    --update task
-// app.delete('/api/v1/tasks/:id')    --delete task
