@@ -24,6 +24,10 @@ const person = new mongoose.Schema({
   address: {
     type: String,
   },
+  createdBy: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Person", person);
