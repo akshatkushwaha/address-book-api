@@ -24,6 +24,7 @@ const person = new mongoose.Schema({
   address: {
     type: String,
   },
+  //for access control
   createdBy: {
     type: String,
     required: true,

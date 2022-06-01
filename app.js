@@ -7,7 +7,6 @@ const auth = require("./routers/auth");
 require("dotenv").config();
 
 //middleware
-// app.use(express.static("./public")); //deploys the html website
 app.use(errorHandlingMiddleware);
 app.use(express.json());
 

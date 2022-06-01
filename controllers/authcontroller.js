@@ -8,7 +8,7 @@ const login = asyncWrapper(async (req, res, next) => {
     username: req.body.username,
   });
   if (!user) {
-    return next(createCustomError(`No user not found`, 404));
+    return next(createCustomError(`User not found`, 404));
   } else if (user.password != req.body.password) {
     return next(createCustomError("Incorrect password", 401));
   }
