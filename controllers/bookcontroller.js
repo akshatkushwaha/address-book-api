@@ -3,8 +3,25 @@ const asyncWrapper = require("../middleware/async");
 const { createCustomError } = require("../errors/custom-error");
 
 const getAllContact = asyncWrapper(async (req, res, next) => {
-  const book = await Person.find({});
-  res.status(200).json({ success: true, data: book });
+  const { firstName, lastName, tel, email } = req.query;
+  var queryObject = {};
+  if (firstName) {
+    queryObject.firstName = firstName;
+  }
+  if (lastName) {
+    queryObject.lastName = lastName;
+  }
+  if (tel) {
+    queryObject.tel = tel;
+  }
+  if (email) {
+    queryObject.email = email;
+  }
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+  const book = await Person.find(queryObject).skip(skip).limit(limit);
+  res.status(200).json({ success: true, data: book, nbHits: book.length });
 });
 
 const getContact = asyncWrapper(async (req, res, next) => {
