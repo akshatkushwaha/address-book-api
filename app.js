@@ -14,6 +14,10 @@ app.use(express.json());
 app.use("/api/v1/", book);
 app.use("/api/v1/", auth);
 
+app.get("/", (req, res) => {
+  res.status(200).send("All routes are available at /api/v1/");
+});
+
 app.get("*", (req, res) => {
   res.status(404).send("Route does not exits");
 });
